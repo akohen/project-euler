@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Project Euler</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link href="prettify.css" type="text/css" rel="stylesheet" />
+  <link href="desert.css" type="text/css" rel="stylesheet" />
+  <style type="text/css">.popover{ max-width: 100%; }</style>
+</head>
+<body>
+
+<h1>Project Euler</h1>
+
+
+<table class="table table-condensed table-striped">
+<tbody>
+</tbody>
+</table>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="prettify.js"></script>
+<script src="problems.js"></script>
+<script type="text/javascript">
+  $(function() {
+
+    $.each(problems,function(index,value) {
+      var solution = $('<button/>', {text: 'Solution' });
+      solution.data('content', value().toString());
+      var code = $('<button/>', {text: 'Code'});
+      code.data('content', '<pre class="prettyprint">'+value.toString()+'</pre>');
+      code.on('shown.bs.popover', prettyPrint);
+
+
+      $("tbody").append($('<tr class="text-center">')
+        .append($('<td>')
+          .append('<a href="https://projecteuler.net/problem='+index+'" target="_blank">Problem '+index+'</a>'))
+        .append($('<td>')
+          .append(solution))
+        .append($('<td>')
+          .append(code))
+        );
+    });
+
+    $('body').popover({selector: 'button', html : true, placement : 'bottom'});
+
+  });
+</script>
+</body>
+</html>

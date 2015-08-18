@@ -27,7 +27,7 @@
       var solution = $('<button/>', {text: 'Solution' });
       solution.data('content', value().toString());
       var code = $('<button/>', {text: 'Code'});
-      code.data('content', '<pre class="prettyprint">'+value.toString()+'</pre>');
+      code.data('content', $('<pre class="prettyprint">').text(value.toString()));
       code.on('shown.bs.popover', prettyPrint);
 
 

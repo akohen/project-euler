@@ -67,3 +67,4 @@ problems[7] = function() {
   }
   return primes[n-1];
 }
+

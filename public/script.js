@@ -1,31 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Project Euler</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link href="prettify.css" type="text/css" rel="stylesheet" />
-  <link href="desert.css" type="text/css" rel="stylesheet" />
-  <style type="text/css">.popover{ max-width: 100%; }</style>
-</head>
-<body class="text-center">
-
-<h1>Project Euler</h1>
-
-
-<div id="current"></div>
-
-<h2>All problems</h2>
-<table class="table table-condensed table-striped">
-<tbody>
-</tbody>
-</table>
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="prettify.js"></script>
-<script src="problems.js"></script>
-<script type="text/javascript">
   $(function() {
-    var currentProblem = 1;
+    console.log('started');
 
     if( currentProblem > 0 ) {
       $.getJSON( "get/"+currentProblem, function( data ) {
@@ -56,10 +30,7 @@
           });
         foo.popover("toggle");
         });
-
-        
-
-        
+       
       });
       var solution = $('<button rel="popover" />').text('Solution');
       solution.data('content', value().toString());
@@ -84,6 +55,3 @@
     prettyPrint();
 
   });
-</script>
-</body>
-</html>

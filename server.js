@@ -1,9 +1,19 @@
 var express = require('express');
 var request = require('request');
 var cheerio = require('cheerio');
+var fs = require("fs");
 
 var app = express();
 app.set('port', process.env.PORT || 3000);
+
+app.get('/list', function (req, res) { 
+  fs.readdir('problems', function(err, files) {
+    console.log(files);
+    res.json(files);
+  });
+
+
+});
 
 app.get('/get/:problem_id', function (req, res) {
   var problem_id = req.params.problem_id;
@@ -17,5 +27,6 @@ app.get('/get/:problem_id', function (req, res) {
     }
   })
 });
-app.use(express.static(__dirname));
+app.use('/problems', express.static("problems"));
+app.use(express.static("public"));
 app.listen(app.get('port'));

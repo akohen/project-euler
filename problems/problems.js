@@ -1,5 +1,3 @@
-var problems = {};
-
 problems[4] = function() {
   function isPalindrome(product) {
     n = product;
@@ -68,3 +66,8 @@ problems[7] = function() {
   return primes[n-1];
 }
 
+problems[1] = function() {
+  return 1;
+}
+
+console.log("loaded");

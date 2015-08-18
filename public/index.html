@@ -21,21 +21,7 @@
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="prettify.js"></script>
-<script type="text/javascript">
-  $.holdReady( true );
-  var currentProblem = 1;
-  var problems = {};
-  $.getJSON( "list", function( scripts ) {
-    var queue = scripts.map(function(script) {
-        return $.getScript("problems/"+script);
-    });
-
-    $.when.apply(null, queue).done(function() {
-      $.holdReady( false );
-    });
-  });
-  
-</script>
+<script src="loader.js"></script>
 <script src="script.js"></script>
 
 </body>

@@ -1,5 +1,4 @@
   $(function() {
-    console.log('started');
 
     if( currentProblem > 0 ) {
       $.getJSON( "get/"+currentProblem, function( data ) {

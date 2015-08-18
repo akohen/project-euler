@@ -8,7 +8,6 @@ app.set('port', process.env.PORT || 3000);
 
 app.get('/list', function (req, res) { 
   fs.readdir('problems', function(err, files) {
-    console.log(files);
     res.json(files);
   });
 
@@ -17,7 +16,6 @@ app.get('/list', function (req, res) {
 
 app.get('/get/:problem_id', function (req, res) {
   var problem_id = req.params.problem_id;
-  console.log(problem_id);
   request('https://projecteuler.net/problem='+problem_id, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       $ = cheerio.load(body);

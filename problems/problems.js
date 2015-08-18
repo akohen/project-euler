@@ -69,5 +69,3 @@ problems[7] = function() {
 problems[1] = function() {
   return 1;
 }
-
-console.log("loaded");

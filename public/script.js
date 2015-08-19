@@ -29,14 +29,17 @@
           });
         foo.popover("toggle");
         });
-       
       });
+
       var solution = $('<button rel="popover" />').text('Solution');
-      solution.data('content', value().toString());
+      solution.data('content', function() {
+        if (this.cache) return this.cache;
+        return this.cache = value().toString();
+      });
+
       var code = $('<button rel="popover" />').text('Code');
       code.data('content', $('<pre class="prettyprint">').text(value.toString()));
       code.on('shown.bs.popover', prettyPrint);
-
 
       $("tbody").append($('<tr class="text-center">')
         .append($('<td>')

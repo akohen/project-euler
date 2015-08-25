@@ -1,13 +1,22 @@
 problems[10] = function() {
-  number = 2;
-  primes = [];
-  sum = 0;
-  while(number<2000000) {
-    if(!primes.some(function(prime) { return (number%prime == 0); })) {
-      primes.push(number);
-      sum += number;
+  limit = 2000000;
+  sieveLimit = Math.ceil(Math.sqrt(limit));
+  sieve = {};
+  
+  for(i=2; i<=sieveLimit; i++) {
+    if( !sieve[i] ) {
+      for(j=i*i; j<=limit; j+=i) {
+        sieve[j] = true;
+      }
     }
-    number++;
   }
+
+  sum = 0;
+  for(i=2; i<=limit; i++) {
+    if( !sieve[i]) {
+      sum += i;
+    }
+  }
+
   return sum;
 }

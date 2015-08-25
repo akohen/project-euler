@@ -1,7 +1,5 @@
 $.holdReady( true );
 
-var currentProblem = 8;
-
 var problems = {};
 $.getJSON( "list", function( scripts ) {
   var queue = scripts.map(function(script) {

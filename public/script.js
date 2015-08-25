@@ -1,20 +1,25 @@
-  $(function() {
+function showProblem (argument) {
+  $.getJSON( "get/"+argument, function( data ) {
+    $('#current').empty();
+    $('#current')
+      .append($('<h2>').text('Current Problem: ' + data['t']))
+      .append(data['p'])
+      .append($('<h4>').text('Source'))
+      .append($('<pre class="prettyprint text-left">')
+        .text(problems[argument].toString()) )
+      .append($('<h4>').text('Result : ' +problems[argument]().toString()) );
+    prettyPrint();
+  });
+}
 
-    if( currentProblem > 0 ) {
-      $.getJSON( "get/"+currentProblem, function( data ) {
-        $('#current')
-          .append($('<h2>').text('Current Problem: ' + data['t']))
-          .append(data['p'])
-          .append($('<h4>').text('Source'))
-          .append($('<pre class="prettyprint text-left">')
-            .text(problems[currentProblem].toString()) )
-          .append($('<h4>').text('Result : ' +problems[currentProblem]().toString()) );
-        prettyPrint();
-      });
-    }
+  $(function() {
 
     $.each(problems,function(index,value) {
       var link = '<a href="https://projecteuler.net/problem='+index+'" target="_blank">Project Euler page</a>';
+      var setActive = $("<button>Set Active</button>").click(function(e) {
+          sessionStorage.setItem('currentProblem', index);
+          showProblem(index);
+      });
       var problem = $('<button>Problem '+index+'</button>');
       problem.data('id',index);
       problem.on('click', function() {
@@ -49,11 +54,19 @@
         .append($('<td>')
           .append(code))        
         .append($('<td>')
+          .append(setActive))
+        .append($('<td>')
           .append(link))
         );
     });
 
     $('body').popover({selector: '[rel=popover]', html : true, placement : 'bottom', trigger : 'focus'});
     prettyPrint();
+
+    var currentProblem = sessionStorage.getItem('currentProblem') == null ? 0 : sessionStorage.getItem('currentProblem');
+
+    if( currentProblem > 0 ) {
+      showProblem(currentProblem);
+    }
 
   });

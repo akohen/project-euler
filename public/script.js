@@ -7,7 +7,7 @@ function showProblem (argument) {
       .append($('<h4>').text('Source'))
       .append($('<pre class="prettyprint text-left">')
         .text(problems[argument].toString()) )
-      .append($('<h4>').text('Result : ' +problems[argument]().toString()) );
+      .append($('<h4>').text('Result : ' +problems[argument]()) );
     prettyPrint();
   });
 }

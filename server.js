@@ -21,6 +21,7 @@ app.get('/get/:problem_id', function (req, res) {
       $ = cheerio.load(body);
       var title = $('h2').html();
       var problem = $('[role=problem]').html();
+      problem = problem.replace(/project\/images/,'https://projecteuler.net/project/images')
       res.json({t:title,p:problem});
     }
   })

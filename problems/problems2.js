@@ -20,3 +20,15 @@ problems[10] = function() {
 
   return sum;
 }
+
+problems[9] = function() {
+  let c = 330
+  while(c < 999) {
+    for(let a = Math.floor(1000-2*c)+1; a<(1000-c)/2;a++) {
+      let b = 1000 - a - c
+      if(a*a+b*b==c*c) { return (a*b*c) }
+    }
+    c++
+  }
+  return -1
+}

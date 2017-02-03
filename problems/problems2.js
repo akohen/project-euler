@@ -77,3 +77,24 @@ problems[11] = function() {
 
   return max
 }
+
+problems[12] = function() {
+  let triangleNumber = 0
+  for (let n = 1; n<100000; n++) {
+    triangleNumber += n // n-th triangle number
+    let factors = 1 // number of factors
+    let i = 2 // possible dividers
+    let toFactor = triangleNumber
+    while(toFactor>1) { // looking for prime divisors
+      let primePower = 0
+      while(toFactor%i==0) {
+        toFactor /= i
+        primePower++ // how many times does this prime divide triangleNumbers ?
+      }
+      factors *= primePower + 1 // if N = p_1 ^ a_1 + p_2 ^ a_2, N has (a_1 + 1) x (a_2 + 1) factors
+      i++
+    }
+    if(factors >= 500) return triangleNumber
+  }
+  return false
+}

@@ -2,12 +2,13 @@ function showProblem (argument) {
   $.getJSON( "get/"+argument, function( data ) {
     $('#current').empty();
     $('#current')
-      .append($('<h2>').text('Current Problem: ' + data['t']))
+      .append($('<h2>').text('Problem '+ argument +': ' + data['t']))
       .append(data['p'])
+      .append($('<h4>').text('Result : ' +problems[argument]()) )
+      .append($('<a />',{href:'https://projecteuler.net/problem='+argument,text:"Project Euler page", target:"_blank"}) )
       .append($('<h4>').text('Source'))
       .append($('<pre class="prettyprint text-left">')
         .text(problems[argument].toString()) )
-      .append($('<h4>').text('Result : ' +problems[argument]()) );
     prettyPrint();
   });
 }

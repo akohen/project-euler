@@ -26,3 +26,15 @@ problems[14] = function() {
   }
   return maxStart
 }
+
+problems[15] = function(n=20) {
+  let permutations = 1
+  for (let i = 2; i<=2*n; i++) {
+    permutations *= i
+  }
+  let duplicates = 1
+  for (let i = 2; i<=n; i++) {
+    duplicates *= i*i
+  }
+  return permutations/duplicates
+}

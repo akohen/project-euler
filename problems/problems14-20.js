@@ -38,3 +38,21 @@ problems[15] = function(n=20) {
   }
   return permutations/duplicates
 }
+
+problems[16] = function(n=1000) {
+  let digits = [1]
+  for(let i=1; i<=n;i++) {
+    let remainder = 0
+    digits = digits.map(d => {
+      let digit = (2*d+remainder)%10
+      if(d>4) remainder = 1
+      else remainder = 0
+      return digit
+    })
+    if(remainder) digits.push(remainder)
+  }
+
+  let total = 0
+  digits.forEach(d => {total+=d})
+  return total
+}

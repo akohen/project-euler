@@ -4,7 +4,7 @@ function showProblem (argument) {
     $('#current')
       .append($('<h2>').text('Problem '+ argument +': ' + data['t']))
       .append(data['p'])
-      .append($('<h4>').text('Result : ' +problems[argument]()) )
+      .append($('<h4>').text('Result : ').append($('<span id="result">').text(problems[argument]())) )
       .append($('<a />',{href:'https://projecteuler.net/problem='+argument,text:"Project Euler page", target:"_blank"}) )
       .append($('<h4>').text('Source'))
       .append($('<pre class="prettyprint text-left">')

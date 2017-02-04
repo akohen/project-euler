@@ -21,11 +21,12 @@ app.get('/get/:problem_id', function (req, res) {
       $ = cheerio.load(body);
       var title = $('h2').html();
       var problem = $('[role=problem]').html();
-      problem = problem.replace(/project\/images/,'https://projecteuler.net/project/images')
+      problem = problem.replace(/project\//,'https://projecteuler.net/project/')
       res.json({t:title,p:problem});
     }
   })
 });
 app.use('/problems', express.static("problems"));
+app.use('/data', express.static("data"));
 app.use(express.static("public"));
 app.listen(app.get('port'));

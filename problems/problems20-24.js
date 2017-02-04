@@ -42,3 +42,22 @@ problems[21] = function() {
 
   return sumOfAmiableNumbers
 }
+
+
+
+problems[22] = function() {
+  $.getJSON('/data/p022_names.txt',function(names) {
+    let total = 0
+    names.sort()
+    names.map((name,i) => {
+      let sumOfName = 0
+      for(let c=0; c<name.length; c++) {
+        sumOfName += name.charCodeAt(c) - 64
+      }
+      total += sumOfName * (i+1)
+      $('#result').text(total)
+    })
+  })
+
+  return "processing"
+}

@@ -1,17 +1,25 @@
 function showProblem (argument) {
+  $('#current').empty();
+  $('#current')
+    .append($('<h2>').text('Problem '+ argument +': ').append($('<span id="title">').text('Loading')) )
+    .append($('<p id="description">').text('Loading'))
+    .append($('<h4>').text('Result : ').append($('<span id="result">').text('Processing')) )
+    .append($('<a />',{href:'https://projecteuler.net/problem='+argument,text:"Project Euler page", target:"_blank"}) )
+    .append($('<h4>').text('Source'))
+    .append($('<pre class="prettyprint text-left">')
+      .text(problems[argument].toString()) )
+  prettyPrint();
+
+  // display instructions
   $.getJSON( "get/"+argument, function( data ) {
-    $('#current').empty();
-    $('#current')
-      .append($('<h2>').text('Problem '+ argument +': ' + data['t']))
-      .append(data['p'])
-      .append($('<h4>').text('Result : ').append($('<span id="result">').text(problems[argument]())) )
-      .append($('<a />',{href:'https://projecteuler.net/problem='+argument,text:"Project Euler page", target:"_blank"}) )
-      .append($('<h4>').text('Source'))
-      .append($('<pre class="prettyprint text-left">')
-        .text(problems[argument].toString()) )
-    prettyPrint();
-  });
-}
+    $('#title').text(data['t'])
+    $('#description').html(data['p'])
+    
+    // start computing solution
+    setTimeout(function() { $('#result').text( problems[argument]() )},1)
+  })
+
+  }
 
   $(function() {
 

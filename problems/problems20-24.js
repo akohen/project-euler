@@ -19,3 +19,26 @@ problems[20] = function(n=100) {
   digits.forEach(d => {total+=d})
   return total
 }
+
+
+
+problems[21] = function() {
+  function sumOfProperDivisors(n) {
+    let sum = 1
+    for(let i=2;i<=n/2;i++) {
+      if(n%i == 0)
+        sum += i
+    }
+    return sum
+  }
+
+  let sumOfAmiableNumbers = 0
+  for (var a = 2; a < 10000; a++) {
+    let b = sumOfProperDivisors(a)
+    if( b > a && sumOfProperDivisors(b) == a) {
+      sumOfAmiableNumbers += a + b
+    }
+  }
+
+  return sumOfAmiableNumbers
+}

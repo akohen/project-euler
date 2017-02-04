@@ -81,20 +81,20 @@ problems[23] = function(max = 20161) {
   }
   console.log(abundants.length + " abundants numbers found")
 
+  // creating of sieve of all sum of abundants numbers
+  let sieve = {}
+  for(let a=0; a<abundants.length; a++) {
+    for(let b=a; b<abundants.length; b++) {
+      if( abundants[a] + abundants[b] <= max) {
+        sieve[ abundants[a] + abundants[b] ] = true
+      }
+    }
+  }
+
+  // checking all numbers
   let total = 0
-  ext: for(let n=1;n<=max;n++) {
-    if(n%1000==0) console.log("n " + n)
-    for(let a of abundants) {
-      if(a > n/2) {
-        total += n 
-        continue ext
-      }
-      let b = n - a
-      if(abundants.indexOf(b) > -1) { // we can skip n
-        continue ext
-      }
-    } // No sum of abundants numbers found
-    total += n
+  for(let n=1;n<=max;n++) {
+    if(!sieve[n]) total+=n
   }
 
   return total

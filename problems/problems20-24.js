@@ -61,3 +61,41 @@ problems[22] = function() {
 
   return "processing"
 }
+
+problems[23] = function(max = 28123) { 
+  function isAbundant(n) {
+    let sum = 1
+    for(let i=2;i<=n/2;i++) {
+      if(n%i == 0)
+        sum += i
+    }
+    return sum > n
+  }
+
+  // finding abundant numbers
+  let abundants = []
+  for(let n=1;n<=max;n++) {
+    if(isAbundant(n)) {
+      abundants.push(n)
+    }
+  }
+  console.log(abundants.length + " abundants numbers found")
+
+  let total = 0
+  ext: for(let n=1;n<=max;n++) {
+    if(n%1000==0) console.log("n " + n)
+    for(let a of abundants) {
+      if(a > n/2) {
+        total += n 
+        continue ext
+      }
+      let b = n - a
+      if(abundants.indexOf(b) > -1) { // we can skip n
+        continue ext
+      }
+    } // No sum of abundants numbers found
+    total += n
+  }
+
+  return total
+}

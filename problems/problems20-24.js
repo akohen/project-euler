@@ -55,8 +55,8 @@ problems[22] = function() {
         sumOfName += name.charCodeAt(c) - 64
       }
       total += sumOfName * (i+1)
-      $('#result').text(total)
     })
+    $('#result').text(total)
   })
 
   return "processing"

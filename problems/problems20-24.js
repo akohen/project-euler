@@ -62,7 +62,7 @@ problems[22] = function() {
   return "processing"
 }
 
-problems[23] = function(max = 28123) { 
+problems[23] = function(max = 20161) { 
   function isAbundant(n) {
     let sum = 1
     for(let i=2;i<=n/2;i++) {

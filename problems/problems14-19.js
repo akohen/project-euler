@@ -87,3 +87,55 @@ problems[18] = function() {
 
   return grid[0][0]
 }
+
+problems[17] = function(n=1000) {
+  function countLetters(number) {
+    const numbers = {
+      0:0,
+      1:3,
+      2:3,
+      3:5,
+      4:4,
+      5:4,
+      6:3,
+      7:5,
+      8:5,
+      9:4,
+      10:3,
+      20:6,
+      30:6,
+      40:5,
+      50:5,
+      60:5,
+      70:7,
+      80:6,
+      90:6
+    }
+    let units = number%10
+    let tens = number%100-units
+    let hundreds = number%1000 - units - tens
+    let thousands = number%10000 - hundreds - tens - units
+    let count = numbers[units] + numbers[tens]
+    if(hundreds > 0) {
+      if(number > hundreds) {
+        count += 3 // add "and"
+      }
+      count += numbers[hundreds/100] + 7 // X hundred
+    }
+    if( thousands > 0) {
+      count += numbers[thousands/1000] + 8 // X thousand
+    }
+    if(number%100 == 14 || number%100 == 16 || number%100 == 17 || number%100 == 19) {
+      count++ // fix fourten/sixten/seventen/nineten. tenone/tentwo/tenfive/eightten is alright though
+    }
+    return count
+  } 
+  
+
+  let sum = 0
+  for(let i=1;i<=n;i++) {
+    sum += countLetters(i)
+  }
+
+  return sum
+}
